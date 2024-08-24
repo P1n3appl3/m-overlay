@@ -67,7 +67,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/a-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/a-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/a-pressed.png"),
-		COLOR = color(0, 225, 150, 255),
+		COLOR = color_blue,
 		POSITION = {
 			x = 12 + 64 + 256,
 			y = 48
@@ -77,7 +77,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/b-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/b-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/b-pressed.png"),
-		COLOR = color(230, 0, 0, 255),
+		COLOR = color_pink,
 		POSITION = {
 			x = 16 + 256,
 			y = 92
@@ -87,7 +87,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/x-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/x-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/x-pressed.png"),
-		COLOR = color(255, 255, 255, 255),
+		COLOR = color_pink,
 		POSITION = {
 			x = 138 + 256,
 			y = 32
@@ -97,7 +97,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/y-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/y-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/y-pressed.png"),
-		COLOR = color(255, 255, 255, 255),
+		COLOR = color_white,
 		POSITION = {
 			x = 60 + 256,
 			y = -16
@@ -107,7 +107,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/z-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/z-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/z-pressed.png"),
-		COLOR = color(165, 75, 165, 255),
+		COLOR = color_blue,
 		POSITION = {
 			x = 128 + 256,
 			y = -32
@@ -117,7 +117,7 @@ local BUTTON_TEXTURES = {
 		OUTLINE = graphics.newImage("textures/buttons/start-outline.png"),
 		FILLED = graphics.newImage("textures/buttons/start-filled.png"),
 		PRESSED = graphics.newImage("textures/buttons/start-pressed.png"),
-		COLOR = color(255, 255, 255, 255),
+		COLOR = color(color_blue),
 		POSITION = {
 			x = 256,
 			y = 26
@@ -297,7 +297,7 @@ function SKIN:Paint(controller)
 
 	local rotated = transformVertices(vertices, 64 + 48 + 128 + (32 * vx), 64 + 18 + (32 * vy), angle, 64, 64)
 
-	graphics.setColor(255, 235, 0, 255)
+	graphics.setColor(color_blue)
 
 	if SETTINGS:IsHighContrast() then
 		graphics.easyDraw(BUTTON_TEXTURES.CSTICK.GATE_FILLED, 48 + 128, 52, 0, 128, 128)
@@ -320,6 +320,7 @@ function SKIN:Paint(controller)
 
 	-- Draw L
 
+	graphics.setColor(color_pink)
 	if SETTINGS:IsSlippiReplay() and melee.isInGame() then
 		graphics.setLineStyle("smooth")
 		graphics.setLineWidth(4)
@@ -396,6 +397,7 @@ function SKIN:Paint(controller)
 
 		-- Draw R
 
+        graphics.setColor(color_white)
 		-- Draw outline
 		graphics.easyDraw(SETTINGS:IsHighContrast() and ANALOG_FILLED or ANALOG, 48 + 128 + 6, 14, 0, 116, 24)
 		-- Draw segment for button press
@@ -415,7 +417,7 @@ function SKIN:Paint(controller)
 			-- R Analog
 			graphics.rectangle("fill", 48 + 128 + 14 + 12 + (88 * (1 - ar)), 20, 88 * ar, 12)
 		graphics.setStencilTest()
-		
+
 		--[[if SETTINGS:IsDebugging() then
 			local strl = ("L: %f"):format(al)
 			local strr = ("R: %f"):format(ar)
